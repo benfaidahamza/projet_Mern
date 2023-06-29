@@ -3,11 +3,12 @@ import { Link,useNavigate } from 'react-router-dom';
 
 
 function Navbar() {
-  const isLoggedIn = localStorage.getItem('token'); 
+   const isLoggedIn = localStorage.getItem('token'); 
+   const Storedrole = localStorage.getItem('role'); 
    const navigate=useNavigate();
    const logout = () => {
-    localStorage.clear(); // Vide le local storage
-    navigate('/Connexion'); // Redirige vers la page de connexion
+    localStorage.clear(); 
+    navigate('/Connexion'); 
   };
   return (
     <>
@@ -29,10 +30,17 @@ function Navbar() {
                 </li>
               </>
             )}
-            {isLoggedIn && (
+            {isLoggedIn && Storedrole==='adherant' &&(
               <>
                 <li className="nav-item">
-                  <Link className="nav-link stylish" to="/adherent">Liste Produits</Link>
+                  <Link className="nav-link stylish" to="/ListeProduits">Panier</Link>
+                </li>
+              </>
+            )}
+            {isLoggedIn &&  (
+              <>
+                <li className="nav-item">
+                  <Link className="nav-link stylish" to="/ListeProduits">Liste Produits</Link>
                 </li>
                 <li className="nav-item">
                 <button className="nav-link stylish" onClick={logout}> Déconnexion</button>

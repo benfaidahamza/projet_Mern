@@ -8,6 +8,7 @@ import Adherent from './Composants/Adherent/Adherent';
 
 import './App.css';
 import Produits from './Composants/Produits/Produits';
+import ListeProduits from './Composants/Adherent/ListeProduits/ListeProduits';
 
 function App() {
   return (
@@ -18,7 +19,7 @@ function App() {
     <Route path="/Admin" element={<Admin/>} />
     <Route path="/Produits" element={<Produits/>} />
     <Route path="/Connexion" element={<Connexion/>} />
-    <Route path="/Adherent" element={<Adherent/> } />
+    <Route path="/ListeProduits" element={<ListeProduits/> } />
     <Route path="/Inscription" element={<Inscription/> } />
     </Routes>
     <Footer />

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState,useEffect } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import './Inscription.css';
@@ -12,6 +12,18 @@ export default function Inscription() {
   const [phone, setPhone] = useState('');
   const [errorMessage, setErrorMessage] = useState('');
 
+  useEffect(() => {
+    const storedToken = localStorage.getItem('token');
+    const storedRole = localStorage.getItem('role');
+
+    if (storedToken && storedRole==='adherent') {
+      navigate('/ListeProduits');
+    }  else if (storedToken && storedRole==='admin') {
+      navigate('/Admin');
+    }
+    else 
+    navigate('/Inscription');
+  }, [navigate]);
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {

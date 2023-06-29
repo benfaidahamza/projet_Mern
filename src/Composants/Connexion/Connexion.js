@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState,useEffect } from 'react';
 import axios from 'axios';
 import Navbar from '../Header/Navbar';
 import './Connexion.css';
@@ -9,6 +9,19 @@ export default function Connexion() {
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
   const  navigate= useNavigate();
+
+  useEffect(() => {
+    const storedToken = localStorage.getItem('token');
+    const storedRole = localStorage.getItem('role');
+
+    if (storedToken && storedRole==='adherent') {
+      navigate('/ListeProduits');
+    }  else if (storedToken && storedRole==='admin') {
+      navigate('/Admin');
+    }
+    else 
+    navigate('/connexion');
+  }, [navigate]);
 
   const handleFormSubmit = async (e) => {
     setUsername('');
@@ -22,7 +35,7 @@ export default function Connexion() {
       localStorage.setItem('role', response.data.role);
 
       if (response.data.role === 'adherent') {
-        navigate('/Adherent');
+        navigate('/ListeProduits');
       } else if (response.data.role === 'admin') {
         navigate('/Admin'); 
       } else {

@@ -15,7 +15,7 @@ export default function Accueil() {
         <h2>Explorez nos catégories de sport :</h2>
         <div className="sports-grid">
           <div className="sport-card">
-            <img src="foot.png" alt="Football" />
+            <img src="football.png" alt="Football" />
             <h3>Football</h3>
           </div>
           <div className="sport-card">
@@ -23,7 +23,7 @@ export default function Accueil() {
             <h3>handball</h3>
           </div>
           <div className="sport-card">
-            <img src="basket.png" alt="Basketball" />
+            <img src="basketball.png" alt="Basketball" />
             <h3>Basketball</h3>
           </div>
           <div className="sport-card">
