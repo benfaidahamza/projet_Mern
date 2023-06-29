@@ -13,7 +13,7 @@ import Produits from './Composants/Produits/Produits';
 
 function App() {
   return (
-   
+  
 
    <>
   {/* <Navbar /> */}
@@ -30,6 +30,3 @@ function App() {
     </>
   
   );
-}
-
-export default App;
