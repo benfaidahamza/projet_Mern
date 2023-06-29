@@ -1,0 +1,88 @@
+.navbar,
+.navbar-expand-lg {
+    height: 120px;
+    background-color: #00b7ff;
+}
+img{
+  margin-top: 12px;
+  margin-left:  10px;
+  width: 45%;
+  /* border: 1px solid #6ac2f6; */
+  border-radius: 50px;
+
+}
+.navbar-nav .nav-link #Produits {
+    text-transform: uppercase;
+    font-weight: bold;
+    color: rgb(5, 207, 238);
+    text-decoration: none;
+
+      display: inline-block;
+
+}
+.navbar-nav .nav-link #Accueil {
+  text-transform: uppercase;
+  font-weight: bold;
+  color: rgb(238, 110, 5);
+  text-decoration: none;
+
+    display: inline-block;
+    
+}
+.navbar-nav .nav-link {
+  text-transform: uppercase;
+  font-weight: bold;
+  color: rgb(160, 5, 238);
+  text-decoration: none;
+
+    display: inline-block;
+
+
+}
+ 
+input[type="submit"]#sinscrire {
+    width: 100%;
+    padding: 20px;
+    font-size: 16px;
+    color: #ffffff;
+    cursor: pointer;
+margin-right: 50px;
+    border: 1px solid #6ac2f6;
+    border-radius: 3px;
+}
+
+input[type="submit"]#seconnecter {
+    width: 100%;
+    padding: 20px;
+    font-size: 16px;
+    color: #ffffff;
+    background-color: #007bff;
+    cursor: pointer;
+    margin-right: 50px;
+    border: 1px solid #79e85d;
+    border-radius: 3px;
+}
+
+/* Ajoutez ces styles à votre fichier Navbar.css existant */
+
+/* Styles pour le panier */
+/* .navbar-text {
+    display: flex;
+    align-items: center;
+    color: #fff;
+    font-size: 16px;
+  }
+  
+  .navbar-text i {
+    margin-right: 5px;
+  }
+  
+  .navbar-text:hover {
+    text-decoration: none;
+    color: #fff;
+  }
+  
+  .navbar-text:hover i {
+    color: #ffd700; 
+  }
+   */
