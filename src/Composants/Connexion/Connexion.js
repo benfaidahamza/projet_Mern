@@ -2,11 +2,13 @@ import React, { useState } from 'react';
 import axios from 'axios';
 import Navbar from '../Header/Navbar';
 import './Connexion.css';
+import { useNavigate } from 'react-router-dom';
 
 export default function Connexion() {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
+  const  navigate= useNavigate();
 
   const handleFormSubmit = async (e) => {
     setUsername('');
@@ -16,7 +18,16 @@ export default function Connexion() {
 
     try {
       const response = await axios.post('http://localhost:3001/api/auth/login', { username, password });
-      console.log(response);
+      localStorage.setItem('token', response.data.token);
+      localStorage.setItem('role', response.data.role);
+
+      if (response.data.role === 'adherent') {
+        navigate('/Adherent');
+      } else if (response.data.role === 'admin') {
+        navigate('/Admin'); 
+      } else {
+        setError('Nom d\'utilisateur ou mot de passe incorrect');
+      }
     } catch (error) {
       setError('Nom d\'utilisateur ou mot de passe incorrect');
       console.error(error);

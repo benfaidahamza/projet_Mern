@@ -1,7 +1,14 @@
 import './Navbar.css'
-import { Link } from 'react-router-dom';
+import { Link,useNavigate } from 'react-router-dom';
+
 
 function Navbar() {
+  const isLoggedIn = localStorage.getItem('token'); 
+   const navigate=useNavigate();
+   const logout = () => {
+    localStorage.clear(); // Vide le local storage
+    navigate('/Connexion'); // Redirige vers la page de connexion
+  };
   return (
     <>
     <nav class="navbar navbar-expand-lg  fixed-top navbar-light bg-primary">
@@ -12,12 +19,26 @@ function Navbar() {
             </Link>
         <div class="collapse navbar-collapse" id="navbarNavDropdown">
         <ul class="navbar-nav">
-        <li class="nav-item">
-        <Link class="nav-link stylish" to="/Connexion">Connexion</Link>
-        </li>
-        <li class="nav-item">
-        <Link class="nav-link stylish" to="/Inscription">Inscription</Link>
-        </li>
+        {!isLoggedIn && (
+              <>
+                <li className="nav-item">
+                  <Link className="nav-link stylish" to="/Connexion">Connexion</Link>
+                </li>
+                <li className="nav-item">
+                  <Link className="nav-link stylish" to="/Inscription">Inscription</Link>
+                </li>
+              </>
+            )}
+            {isLoggedIn && (
+              <>
+                <li className="nav-item">
+                  <Link className="nav-link stylish" to="/adherent">Liste Produits</Link>
+                </li>
+                <li className="nav-item">
+                <button className="nav-link stylish" onClick={logout}> Déconnexion</button>
+                </li>
+              </>
+            )}
        </ul>
       </div>     
     </div>

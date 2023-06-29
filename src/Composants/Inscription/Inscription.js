@@ -1,39 +1,91 @@
-import React from 'react'
-import './Inscription.css'
-import Navbar from '../Header/Navbar'
+import React, { useState } from 'react';
+import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
+import './Inscription.css';
+import Navbar from '../Header/Navbar';
 
 export default function Inscription() {
+  const navigate = useNavigate();
+  const [username, setUsername] = useState('');
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [phone, setPhone] = useState('');
+  const [errorMessage, setErrorMessage] = useState('');
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    try {
+      let role = 'adherent';
+      const response = await axios.post('http://localhost:3001/api/auth/inscription', {
+        username,
+        email,
+        password,
+        phone,
+        role
+      });
+      navigate('/connexion');
+    } catch (error) {
+      if (error.response && error.response.data && error.response.data.error) {
+        const errorMessage = error.response.data.error;
+        setErrorMessage(errorMessage)
+      } else {
+        console.error(error);
+      }
+    }
+  };
+
   return (
-<>
-<Navbar/>
-<div className="container">
-    <form className="login-form">
-    <h1 className='inscriptionTitre'>Inscription</h1>
-    <label for="nom">Nom :</label>
-          <input type="text" id="nom" name="nom" required /><br/>
+    <>
+      <Navbar />
+      <div className="container">
+        <form className="login-form" onSubmit={handleSubmit}>
+          <h1 className="inscriptionTitre">Inscription</h1>
 
-            <label for="prenom">Prénom :</label>
-            <input type="text" id="prenom" name="prenom" required /><br/>
+          {errorMessage && <p className="error-message">{errorMessage}</p>}
 
-              <label for="email">Adresse e-mail :</label>
-              <input type="email" id="email" name="email" required /><br/>
+          <label htmlFor="username">Username :</label>
+          <input
+            type="text"
+            id="username"
+            name="username"
+            value={username}
+            onChange={(e) => setUsername(e.target.value)}
+            required
+          /><br />
 
-                <label for="motdepasse">Mot de passe :</label>
-                <input type="password" id="motdepasse" name="motdepasse" required /><br/>
+          <label htmlFor="email">Adresse e-mail :</label>
+          <input
+            type="email"
+            id="email"
+            name="email"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            required
+          /><br />
 
-                  <input  type="submit" value="S'inscrire"/>
-    </form>
-  </div>
-  
+          <label htmlFor="password">Mot de passe :</label>
+          <input
+            type="password"
+            id="password"
+            name="password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+            required
+          /><br />
 
+          <label htmlFor="phone">Téléphone :</label>
+          <input
+            type="text"
+            id="phone"
+            name="phone"
+            value={phone}
+            onChange={(e) => setPhone(e.target.value)}
+            required
+          /><br />
 
-
-        
-
-
-
-
-              </>
-
-              )
+          <input type="submit" value="S'inscrire" />
+        </form>
+      </div>
+    </>
+  );
 }

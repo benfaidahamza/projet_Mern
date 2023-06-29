@@ -1,6 +1,5 @@
 const jwt = require('jsonwebtoken');
 const jwt_secret='secret'
-
 function generateToken(user) {
   const payload = {
     username: user.username,
@@ -11,7 +10,6 @@ function generateToken(user) {
 }
 
 function verifyToken(req, res, next) {
-    //pour le test à partir de postman
     token = req.headers['authorization'].split(' ')[1]; 
     if (!token) {
       return res.status(401).json({ message: 'Accès non autorisé. Jeton manquant.' });

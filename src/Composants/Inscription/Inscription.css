@@ -1,21 +1,18 @@
-/* div.container{
-  background-color: #4CAF50;
-} */
 h1 {
   text-transform: uppercase;
   font-weight: bold;
   font-size: 14px;
   text-align: center;
-  color:rgb(0,128,0);
+  color: blue;
 }
 
 form.login-form {
-  /* max-width: 400px; */
-  margin: 6 auto;
+  margin: 6px auto;
   padding: 40px;
   background-color: #ffffff;
   border-radius: 5px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  margin-top: -165px;
 }
 
 label {
@@ -38,7 +35,7 @@ input[type="submit"] {
   padding: 20px;
   font-size: 16px;
   color: #ffffff;
-  background-color: rgb(0, 128, 0);
+  background-color:#007bff;
   border: none;
   border-radius: 3px;
   cursor: pointer;

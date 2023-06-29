@@ -27,4 +27,17 @@ router.post('/login', (req, res) => {
         .catch(err => res.status(500).json({ error: 'Une erreur s\'est produite lors de la recherche de l\'utilisateur.' }));
 });
 
+router.post('/inscription', (req, res) => {
+    const { username, email } = req.body;
+    Users.findOne({ $or: [{ username }, { email }] })
+      .then(existingUser => {
+        if (existingUser) {
+          return res.status(400).json({ error: 'Nom d\'utilisateur ou adresse e-mail déjà utilisé' });
+        }
+        Users.create(req.body)
+          .then(user => res.json({ msg: 'Utilisateur bien ajouté !' }))
+      })
+      .catch(err => res.status(400).json({ error: 'Une erreur s\'est produite lors de la vérification de l\'utilisateur' }));
+  });
+
 module.exports = router;
