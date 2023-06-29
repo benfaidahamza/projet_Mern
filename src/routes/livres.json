@@ -1,0 +1,23 @@
+[
+    {
+        "id": 1,
+        "titre": "Le Seigneur des Anneaux",
+        "nom": "J.R.R. Tolkien",
+        "prix": 25.99,
+        "description": "Une épopée fantastique dans un monde imaginaire."
+      },
+      {
+        "id": 2,
+        "titre": "Harry Potter à l'école des sorciers",
+        "nom": "J.K. Rowling",
+        "prix": 19.99,
+        "description": "L'histoire d'un jeune sorcier et de ses aventures à l'école de sorcellerie."
+      },
+      {
+        "id": 3,
+        "titre": "1984",
+        "nom": "George Orwell",
+        "prix": 12.99,
+        "description": "Un roman dystopique décrivant une société totalitaire."
+      }
+]

@@ -1,0 +1,33 @@
+.grid-container {
+  background-color: rgba(255, 159, 85, 0.8);
+  display: grid;
+  grid-template-columns: auto auto auto auto;
+  grid-gap: 1px;
+  /* background-color: #2196F3; */
+  padding: 10px;
+}
+
+.grid-container > div {
+
+  text-align: center;
+  padding: 300px 0;
+  font-size: 0px;
+}
+
+.item1 {
+  width: 100%;
+  display:grid;
+  background-image: url("/public/voiture.avif");
+  background-repeat: no-repeat;
+  margin-top: 0px;
+  grid-column-end: span 2;
+}
+.item2{
+
+  display:grid;
+  background-image: url("/public/jordan2.jpg");
+  background-repeat: no-repeat;
+  margin-top: 0px;
+  margin:10px 30px -10px -0px;
+  grid-column-end: span 2;
+}
