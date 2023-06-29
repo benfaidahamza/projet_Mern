@@ -13,7 +13,6 @@ function generateToken(user) {
 function verifyToken(req, res, next) {
     //pour le test à partir de postman
     token = req.headers['authorization'].split(' ')[1]; 
-    const token = localStorage.getItem('token');
     if (!token) {
       return res.status(401).json({ message: 'Accès non autorisé. Jeton manquant.' });
     }
