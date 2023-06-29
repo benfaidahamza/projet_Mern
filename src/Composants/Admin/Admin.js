@@ -1,5 +1,5 @@
 import React from 'react'
-import NavAdmin from '../Header/NavAdmin'
+import Navbar from '../Header/Navbar'
 
 
 
@@ -14,7 +14,7 @@ export default function Admin() {
   <link rel="stylesheet" type="text/css" href="style.css"/>
 </head>
 <body>
-<NavAdmin/>
+ <Navbar/>
   <div class="container">
     <form class="login-form">
       <h1>Compte Admin</h1>

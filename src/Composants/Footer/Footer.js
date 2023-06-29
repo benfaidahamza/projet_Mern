@@ -9,19 +9,16 @@ export default function Footer() {
       <div className="footer-column">
       <img src="Dev.jpeg" alt="Image 2"/>
       <br/>
-        <input value='<React.JS/>' />
         <h3>Jordy AKRA MESCHEBA</h3>
       </div>
       <div className="footer-column">
       <img src="Dev.jpeg" alt="Image 2"/>
       <br/>
-        <input value='<Node.JS/>' />
         <h3>Youssef AZARRAF</h3>
       </div>
       <div className="footer-column">
       <img src="Dev.jpeg" alt="Image 2"/>
       <br/>
-        <input value='<JavaScript/>' />
         <h3>Hamza BENFAIDA</h3>
       </div>
     </div>

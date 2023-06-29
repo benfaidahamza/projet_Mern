@@ -1,88 +1,31 @@
-.navbar,
-.navbar-expand-lg {
-    height: 120px;
-    background-color: #00b7ff;
-}
-img{
-  margin-top: 12px;
-  margin-left:  10px;
-  width: 45%;
-  /* border: 1px solid #6ac2f6; */
-  border-radius: 50px;
-
-}
-.navbar-nav .nav-link #Produits {
-    text-transform: uppercase;
-    font-weight: bold;
-    color: rgb(5, 207, 238);
-    text-decoration: none;
-
-      display: inline-block;
-
-}
-.navbar-nav .nav-link #Accueil {
+.stylish-text {
+  font-family: "Arial", sans-serif;
+  font-size: 28px;
   text-transform: uppercase;
-  font-weight: bold;
-  color: rgb(238, 110, 5);
-  text-decoration: none;
-
-    display: inline-block;
-    
+  letter-spacing: 2px;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.8);
+  transition: color 0.3s ease-in-out;
 }
-.navbar-nav .nav-link {
+
+.stylish-text:hover,
+.stylish-text:focus {
+  color: #ffff00;
+  cursor: pointer;
+}
+
+.stylish{
+  font-family: "Arial", sans-serif;
+  font-size: 14px;
+  margin-top: 4px;
   text-transform: uppercase;
-  font-weight: bold;
-  color: rgb(160, 5, 238);
-  text-decoration: none;
-
-    display: inline-block;
-
-
-}
- 
-input[type="submit"]#sinscrire {
-    width: 100%;
-    padding: 20px;
-    font-size: 16px;
-    color: #ffffff;
-    cursor: pointer;
-margin-right: 50px;
-    border: 1px solid #6ac2f6;
-    border-radius: 3px;
+  letter-spacing: 2px;
+  text-shadow: 1px 1px 1px ;
+  transition: color 0.3s ease-in-out;
+  color: #ffff00;
 }
 
-input[type="submit"]#seconnecter {
-    width: 100%;
-    padding: 20px;
-    font-size: 16px;
-    color: #ffffff;
-    background-color: #007bff;
-    cursor: pointer;
-    margin-right: 50px;
-    border: 1px solid #79e85d;
-    border-radius: 3px;
+.stylish:hover,
+.stylish:focus {
+  color: #000000;
+  cursor: pointer;
 }
-
-/* Ajoutez ces styles à votre fichier Navbar.css existant */
-
-/* Styles pour le panier */
-/* .navbar-text {
-    display: flex;
-    align-items: center;
-    color: #fff;
-    font-size: 16px;
-  }
-  
-  .navbar-text i {
-    margin-right: 5px;
-  }
-  
-  .navbar-text:hover {
-    text-decoration: none;
-    color: #fff;
-  }
-  
-  .navbar-text:hover i {
-    color: #ffd700; 
-  }
-   */

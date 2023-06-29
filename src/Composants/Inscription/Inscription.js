@@ -1,11 +1,11 @@
 import React from 'react'
-import NavAdmin from '../Header/NavAdmin'
 import './Inscription.css'
+import Navbar from '../Header/Navbar'
 
 export default function Inscription() {
   return (
 <>
-<NavAdmin/>
+<Navbar/>
 <div className="container">
     <form className="login-form">
     <h1 className='inscriptionTitre'>Inscription</h1>

@@ -1,23 +1,37 @@
-import React from 'react'
-import Navbar from '../Header/Navbar'
-import './Accueil.css'
+import React from 'react';
+import Navbar from '../Header/Navbar';
+import './Accueil.css';
 
-
-export default function Connection() {
+export default function Accueil() {
   return (
+    <div>
+      <Navbar />
+      <div className="hero-section">
+        <h1>Bienvenue sur notre site de sport</h1>
+        <p>Découvrez notre sélection de sports et trouvez tout ce dont vous avez besoin pour vous entraîner.</p>
+      </div>
 
-<body>
-  <Navbar/>
-<div class="grid-container">
-  <div class="item1">
-  
-  </div>
-  <div class="item2">
-
-  </div>
-
-</div>
-</body>
-
-    )
+      <div className="sports-section">
+        <h2>Explorez nos catégories de sport :</h2>
+        <div className="sports-grid">
+          <div className="sport-card">
+            <img src="foot.png" alt="Football" />
+            <h3>Football</h3>
+          </div>
+          <div className="sport-card">
+            <img src="tennis.png" alt="Tennis" />
+            <h3>handball</h3>
+          </div>
+          <div className="sport-card">
+            <img src="basket.png" alt="Basketball" />
+            <h3>Basketball</h3>
+          </div>
+          <div className="sport-card">
+            <img src="course.png" alt="course" />
+            <h3>course</h3>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
 }

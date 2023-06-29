@@ -1,33 +1,71 @@
-.grid-container {
-  background-color: rgba(255, 159, 85, 0.8);
-  display: grid;
-  grid-template-columns: auto auto auto auto;
-  grid-gap: 1px;
-  /* background-color: #2196F3; */
-  padding: 10px;
-}
-
-.grid-container > div {
-
+.hero-section {
+  background-color: #f2f2f2;
+  padding: 40px;
   text-align: center;
-  padding: 300px 0;
-  font-size: 0px;
+  margin-top: 70px;
 }
 
-.item1 {
+.hero-section h1 {
+  font-size: 36px;
+  color: #333;
+  margin-bottom: 20px;
+}
+
+.hero-section p {
+  font-size: 18px;
+  color: #777;
+}
+
+/* Styles pour la section des sports */
+.sports-section {
+  padding: 40px;
+}
+
+.sports-section h2 {
+  font-size: 24px;
+  color: #333;
+  margin-bottom: 20px;
+}
+
+.sports-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-gap: 20px;
+}
+
+.sport-card {
+  background-color: #fff;
+  padding: 20px;
+  text-align: center;
+  border-radius: 5px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.sport-card img {
   width: 100%;
-  display:grid;
-  background-image: url("/public/voiture.avif");
-  background-repeat: no-repeat;
-  margin-top: 0px;
-  grid-column-end: span 2;
+  max-height: 200px;
+  object-fit: cover;
+  border-radius: 5px;
+  margin-bottom: 10px;
 }
-.item2{
 
-  display:grid;
-  background-image: url("/public/jordan2.jpg");
-  background-repeat: no-repeat;
-  margin-top: 0px;
-  margin:10px 30px -10px -0px;
-  grid-column-end: span 2;
+.sport-card h3 {
+  font-size: 18px;
+  color: #333;
+}
+
+.sports-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
+}
+
+.sport-card {
+  text-align: center;
+}
+
+.sport-card img {
+  width: 100%;
+  max-width: 200px;
+  height: auto;
 }

@@ -1,11 +1,11 @@
 import React from 'react'
-import NavProduits from '../Header/NavProduits'
+import Navbar from '../Header/Navbar'
 import './Produits.css'
 
 export default function Produits() {
   return (
     <>
-<NavProduits/>
+    <Navbar/>
       <div className='Produits'>
         <div className="wrapper" >
           <div className="col" >

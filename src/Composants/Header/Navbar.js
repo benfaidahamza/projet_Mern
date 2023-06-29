@@ -1,50 +1,28 @@
-import React from 'react'
-import { Link } from 'react-router-dom';
 import './Navbar.css'
+import { Link } from 'react-router-dom';
 
-
-export default function Navbar() {
+function Navbar() {
   return (
-
-
-
-    <header className="App-header">
-      <nav className="navbar navbar-expand-lg bg-body-tertiary">
-        <div className="container-fluid">
-          <Link to='/accueil' className='accueil'>
-            <img className='navbar-brand' src="LogoIpssi.jpeg" alt="Logo" />
-          </Link>
-          <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-            <span className="navbar-toggler-icon"></span>
-          </button>
-          <div className="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul className="navbar-nav me-auto mb-2 mb-lg-0">
-              <li className="nav-link">
-                <Link to='/accueil' id='Accueil' className="nav-link " aria-current="page" >Accueil</Link>
-              </li>
-              <li className="nav-link">
-                <Link to='/produits' id='Produits' className="nav-link" >Liste Produits</Link>
-              </li>
-              <li className="nav-link">
-                <Link to='/admin'  className=" nav-link"  >
-                  Administrateur
-                </Link>
-              </li>
-
-            </ul>
-
-            <Link to='/connection' className="nav-link"><input id='seconnecter' type="submit" value="Se connecter " /></Link>
-            <Link to='/inscription'><input id='sinscrire' type="submit" value="S'inscrire" /></Link>
-
-            {/* <Link  className="navbar-text ml-3">
-  <i className="fa fa-shopping-cart"></i> Panier</Link>
-         */}
-          </div>
-        </div>
-      </nav>
-    </header>
-
-
-
-  )
+    <>
+    <nav class="navbar navbar-expand-lg  fixed-top navbar-light bg-primary">
+        <div class="container-fluid">
+            <Link  class="navbar-brand" to="/">
+                <img src='LogoIpssi.jpeg' alt="" width="30" height="30" class="d-inline-block align-text-top"/>
+                <span class="stylish-text">Ipssi</span>
+            </Link>
+        <div class="collapse navbar-collapse" id="navbarNavDropdown">
+        <ul class="navbar-nav">
+        <li class="nav-item">
+        <Link class="nav-link stylish" to="/Connexion">Connexion</Link>
+        </li>
+        <li class="nav-item">
+        <Link class="nav-link stylish" to="/Inscription">Inscription</Link>
+        </li>
+       </ul>
+      </div>     
+    </div>
+    </nav>
+    </>
+  );
 }
+export default Navbar;
