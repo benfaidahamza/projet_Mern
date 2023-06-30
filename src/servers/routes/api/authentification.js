@@ -1,3 +1,4 @@
+//Authentification lors de l'inscription d'un users
 const express = require('express');
 const router = express.Router();
 const Users = require('../../../models/User');
