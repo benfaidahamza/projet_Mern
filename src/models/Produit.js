@@ -8,11 +8,18 @@ const ProduitsShema= new mongoose.Schema({
     description: {
         type:String
     },
-    quantite_disponible: {
+    quantite: {
         type:Number
     },
     categorie: {
         type:String
+    },
+    quantitePanier:{
+        type:Number,
+        default: 0
+    },
+    prix:{
+        type:Number
     }
 })
 

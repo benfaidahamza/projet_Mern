@@ -36,6 +36,32 @@ router.put('/:id', verifyToken, (req, res) => {
     .catch(err => res.status(400).json({ error: 'Erreur lors de la mise à jour du produit...' }));
 });
 
+router.put('/', verifyToken, async (req, res) => {
+  console.log(req.body);
+  try {
+    for (const produit of req.body) {
+      const { _id, quantite } = produit;
+
+      const result = await Produits.updateOne(
+        { _id: _id },
+        { $set: { quantite: quantite } }
+      );
+
+      if (result.nModified > 0) {
+        console.log(`Produit avec l'ID ${_id} mis à jour`);
+      } else {
+        console.log(`Aucune mise à jour pour le produit avec l'ID ${_id}`);
+      }
+    }
+
+    res.json({ message: 'Produits mis à jour avec succès' });
+  } catch (error) {
+    console.log(error);
+    res.status(500).json({ error: 'Erreur lors de la mise à jour des produits' });
+  }
+});
+
+
 router.delete('/:id', verifyToken, (req, res) => {
   Produits.findByIdAndDelete(req.params.id)
     .then(() => res.json({ success: 'Produit supprimé avec succès' }))

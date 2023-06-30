@@ -9,6 +9,7 @@ import Adherent from './Composants/Adherent/Adherent';
 import './App.css';
 import Produits from './Composants/Produits/Produits';
 import ListeProduits from './Composants/Adherent/ListeProduits/ListeProduits';
+import Panier from './Composants/Adherent/Panier/Panier';
 
 function App() {
   return (
@@ -21,6 +22,7 @@ function App() {
     <Route path="/Connexion" element={<Connexion/>} />
     <Route path="/ListeProduits" element={<ListeProduits/> } />
     <Route path="/Inscription" element={<Inscription/> } />
+    <Route path="/Panier" element={<Panier/> } />
     </Routes>
     <Footer />
     </>

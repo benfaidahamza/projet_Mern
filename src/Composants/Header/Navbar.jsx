@@ -30,17 +30,13 @@ function Navbar() {
                 </li>
               </>
             )}
-            {isLoggedIn && Storedrole==='adherant' &&(
-              <>
-                <li className="nav-item">
-                  <Link className="nav-link stylish" to="/ListeProduits">Panier</Link>
-                </li>
-              </>
-            )}
             {isLoggedIn &&  (
               <>
                 <li className="nav-item">
                   <Link className="nav-link stylish" to="/ListeProduits">Liste Produits</Link>
+                </li>
+                <li className="nav-item">
+                  <Link className="nav-link stylish" to="/Panier">Panier</Link>
                 </li>
                 <li className="nav-item">
                 <button className="nav-link stylish" onClick={logout}> Déconnexion</button>
