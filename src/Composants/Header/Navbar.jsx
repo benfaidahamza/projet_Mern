@@ -30,7 +30,17 @@ function Navbar() {
                 </li>
               </>
             )}
-            {isLoggedIn &&  (
+            {isLoggedIn && Storedrole==='admin' && (
+              <>
+                <li className="nav-item">
+                  <Link className="nav-link stylish" to="/GestionUser">Gestion User</Link>
+                </li>
+                <li className="nav-item">
+                  <Link className="nav-link stylish" to="/GestionProduit">Gestion Produit</Link>
+                </li>
+              </>
+            )}
+              {isLoggedIn &&  (
               <>
                 <li className="nav-item">
                   <Link className="nav-link stylish" to="/ListeProduits">Liste Produits</Link>
@@ -40,16 +50,6 @@ function Navbar() {
                 </li>
                 <li className="nav-item">
                 <button className="nav-link stylish" onClick={logout}> Déconnexion</button>
-                </li>
-              </>
-            )}
-            {isLoggedIn && Storedrole==='admin' && (
-              <>
-                <li className="nav-item">
-                  <Link className="nav-link stylish" to="/GestionUser">Gestion User</Link>
-                </li>
-                <li className="nav-item">
-                  <Link className="nav-link stylish" to="/GestionProduit">Gestion Produit</Link>
                 </li>
               </>
             )}

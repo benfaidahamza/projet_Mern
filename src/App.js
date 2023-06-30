@@ -22,7 +22,7 @@ function App() {
     <Route path="/Inscription" element={<Inscription/> } />
     <Route path="/Panier" element={<Panier/> } />
     <Route path="/GestionUser" element={<GestionUser/> } />
-    <Route path="/GestionUser" element={<GestionProduit/> } />
+    <Route path="/GestionProduit" element={<GestionProduit/> } />
     </Routes>
     <Footer />
     </>

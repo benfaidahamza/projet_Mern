@@ -1,8 +1,11 @@
+import Navbar from "../../Header/Navbar";
 function GestionUser(){
     return(
         <>
-        <Navbar></Navbar>
-        <h1>Gestion user</h1>
+        <div className="container">
+          <Navbar></Navbar>
+          <h1>Gestion user</h1>
+        </div>
         </>
 
     )
