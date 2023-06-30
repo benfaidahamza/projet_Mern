@@ -22,6 +22,12 @@ router.get('/username/:username', verifyToken, (req, res) => {
     .catch(err => res.status(404).json({ noUsersFound: 'Pas d\'utilisateur trouvé avec cet username...' }));
 });
 
+router.post('/CreateUser', verifyToken, (req, res) => {
+  Users.create(req.body)
+    .then(user => res.json({ msg: 'User bien ajouté !' }))
+    .catch(err => res.status(400).json({ error: 'Impossible d\'ajouter le produit' }));
+});
+
 router.get('/email/:email', verifyToken, (req, res) => {
   const email = req.params.email;
   Users.find({ email: email })
