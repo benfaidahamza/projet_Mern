@@ -1,4 +1,3 @@
-//Explication de connexion entre mongo et node
 const mongoose=require('mongoose');
 const db= process.env.ATLAS_URL;
 

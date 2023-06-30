@@ -1,4 +1,3 @@
-//Token autorisation
 const jwt = require('jsonwebtoken');
 const jwt_secret='secret'
 function generateToken(user) {
