@@ -83,7 +83,7 @@ export default function GestionProduit() {
     try {
       const storedToken = localStorage.getItem('token');
       axios.defaults.headers.common['Authorization'] = `Bearer ${storedToken}`;
-      const response = await axios.post('http://localhost:3001/api/produits', newProduit);
+      const response = await axios.post('http://localhost:3001/api/produits/CreateProduit', newProduit);
       const createdProduit = response.data;
       setProduits([...produits, createdProduit]);
       setShowForm(false);
@@ -95,6 +95,7 @@ export default function GestionProduit() {
         categorie: '',
       });
       alert('Produit ajouté avec succès !');
+      window.location.reload(); // Recharge la page
     } catch (error) {
       console.error(error);
     }
