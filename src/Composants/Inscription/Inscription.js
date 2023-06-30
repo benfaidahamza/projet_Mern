@@ -25,7 +25,7 @@ export default function Inscription() {
     e.preventDefault();
     try {
       let role = 'adherent';
-      const response = await axios.post('http://localhost:3001/api/auth/inscription', {
+      await axios.post('http://localhost:3001/api/auth/inscription', {
         username,
         email,
         password,
