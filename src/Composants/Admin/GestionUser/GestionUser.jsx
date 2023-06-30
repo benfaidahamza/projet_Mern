@@ -11,9 +11,18 @@ export default function GestionUser() {
     username: '',
     email: '',
     role: '',
+    phone: '',
+    password: '', // Nouveau champ mot de passe
   });
   const [showCreateForm, setShowCreateForm] = useState(false);
-
+  
+  useEffect(() => {
+    const storedToken = localStorage.getItem('token');
+    const storedRole = localStorage.getItem('role');
+    if (!storedToken && storedRole!=='admin') {
+      navigate('/Connexion');
+    }
+  }, [navigate]);
   useEffect(() => {
     const fetchUsers = async () => {
       try {
@@ -49,6 +58,8 @@ export default function GestionUser() {
       username: user.username,
       email: user.email,
       role: user.role,
+      phone: user.phone,
+      password: '', // Réinitialiser le champ mot de passe lors de la modification
     });
   };
 
@@ -73,9 +84,35 @@ export default function GestionUser() {
         username: '',
         email: '',
         role: '',
+        phone: '',
+        password: '',
       });
+      window.location.reload();
       alert('Utilisateur mis à jour avec succès !');
     } catch (error) {
+      console.error(error);
+    }
+  };
+
+  const addUser = async () => {
+    try {
+      const storedToken = localStorage.getItem('token');
+      axios.defaults.headers.common['Authorization'] = `Bearer ${storedToken}`;
+      const response = await axios.post('http://localhost:3001/api/auth/inscription', updatedUser);
+      const createdUser = response.data;
+      setUsers([...users, createdUser]);
+      setShowCreateForm(false);
+      setUpdatedUser({
+        username: '',
+        email: '',
+        role: '',
+        phone: '',
+        password: '',
+      });
+      window.location.reload();
+      alert('Utilisateur ajouté avec succès !');
+    } catch (error) {
+        alert(error.response.data.error)
       console.error(error);
     }
   };
@@ -83,14 +120,14 @@ export default function GestionUser() {
   return (
     <div>
       <Navbar />
-      <div className="container">
+      <div className="container1">
         <h2>Gestion des utilisateurs</h2>
         {showCreateForm ? (
           <div>
             <h3>Ajouter un utilisateur</h3>
             <form>
               <div className="form-group">
-                <label htmlFor="username">username:</label>
+                <label htmlFor="username">Nom d'utilisateur:</label>
                 <input
                   type="text"
                   id="username"
@@ -112,19 +149,28 @@ export default function GestionUser() {
                 />
               </div>
               <div className="form-group">
-                <label htmlFor="role">Rôle:</label>
-                <select
-                  id="role"
-                  name="role"
-                  value={updatedUser.role}
+                <label htmlFor="phone">Téléphone:</label>
+                <input
+                  type="phone"
+                  id="phone"
+                  name="phone"
+                  value={updatedUser.phone}
                   onChange={handleUpdateInputChange}
-                  className="form-select"
-                >
-                  <option value="admin">Admin</option>
-                  <option value="user">User</option>
-                </select>
+                  className="form-control"
+                />
               </div>
-              <button className="btn btn-primary" >
+              <div className="form-group">
+                <label htmlFor="password">Mot de passe:</label>
+                <input
+                  type="password"
+                  id="password"
+                  name="password"
+                  value={updatedUser.password}
+                  onChange={handleUpdateInputChange}
+                  className="form-control"
+                />
+              </div>
+              <button className="btn btn-primary" onClick={addUser}>
                 Créer
               </button>
             </form>
@@ -137,8 +183,9 @@ export default function GestionUser() {
         <table className="table">
           <thead>
             <tr>
-              <th>username</th>
+              <th>Nom d'utilisateur</th>
               <th>Email</th>
+              <th>phone</th>
               <th>Rôle</th>
               <th>Action</th>
             </tr>
@@ -174,14 +221,27 @@ export default function GestionUser() {
                 </td>
                 <td>
                   {editingUser && editingUser._id === user._id ? (
+                    <input
+                      type="text"
+                      name="phone"
+                      value={updatedUser.phone}
+                      onChange={handleUpdateInputChange}
+                      className="form-control"
+                    />
+                  ) : (
+                    user.phone                
+                )}
+                </td>
+                <td>
+                  {editingUser && editingUser._id === user._id ? (
                     <select
                       name="role"
                       value={updatedUser.role}
                       onChange={handleUpdateInputChange}
                       className="form-select"
                     >
-                      <option value="admin">Admin</option>
-                      <option value="user">User</option>
+                      <option value="admin">admin</option>
+                      <option value="adherent">adherent</option>
                     </select>
                   ) : (
                     user.role

@@ -24,6 +24,7 @@ router.get('/username/:username', verifyToken, (req, res) => {
 
 router.post('/CreateUser', verifyToken, (req, res) => {
   Users.create(req.body)
+  console.log(req.body)
     .then(user => res.json({ msg: 'User bien ajouté !' }))
     .catch(err => res.status(400).json({ error: 'Impossible d\'ajouter le produit' }));
 });
@@ -34,6 +35,7 @@ router.get('/email/:email', verifyToken, (req, res) => {
     .then(user => res.json(user))
     .catch(err => res.status(404).json({ noUsersFound: 'Pas d\'utilisateur trouvé avec cet email...' }));
 });
+
 router.put('/:id', verifyToken, (req, res) => {
   Users.findByIdAndUpdate(req.params.id, req.body)
     .then(user => res.json({ msg: 'Utilisateur bien modifié!' }))

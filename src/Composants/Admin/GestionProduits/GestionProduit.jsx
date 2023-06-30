@@ -29,6 +29,18 @@ export default function GestionProduits() {
     const storedToken = localStorage.getItem('token');
     const storedRole = localStorage.getItem('role');
 
+    if (storedToken && (storedRole==='admin')){
+      navigate('/GestionProduit');
+    } 
+    else 
+    navigate('/connexion');
+  }, [navigate]);
+
+
+  useEffect(() => {
+    const storedToken = localStorage.getItem('token');
+    const storedRole = localStorage.getItem('role');
+
     if (storedToken) {
       setUser({ token: storedToken, role: storedRole });
     } else {
