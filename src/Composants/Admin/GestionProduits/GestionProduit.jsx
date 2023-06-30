@@ -5,9 +5,11 @@ import Navbar from '../../Header/Navbar';
 
 export default function GestionProduit() {
   const navigate = useNavigate();
+  const [user, setUser] = useState(null);
   const [produits, setProduits] = useState([]);
-  const [editingId, setEditingId] = useState(null);
-  const [editedProduit, setEditedProduit] = useState({
+  const [panier, setPanier] = useState([]);
+  const [showForm, setShowForm] = useState(false);
+  const [newProduit, setNewProduit] = useState({
     nom: '',
     description: '',
     quantite: '',
@@ -19,13 +21,12 @@ export default function GestionProduit() {
     const storedToken = localStorage.getItem('token');
     const storedRole = localStorage.getItem('role');
 
-    if (storedToken && storedRole==='admin'){
-      navigate('/ListeProduits');
-    } 
-    else 
-    navigate('/connexion');
+    if (storedToken) {
+      setUser({ token: storedToken, role: storedRole });
+    } else {
+      navigate('/connexion');
+    }
   }, [navigate]);
-
 
   useEffect(() => {
     const fetchProduits = async () => {
@@ -43,50 +44,59 @@ export default function GestionProduit() {
     fetchProduits();
   }, []);
 
+  useEffect(() => {
+    const fetchPanier = () => {
+      const storedPanier = localStorage.getItem('panier');
+      if (storedPanier) {
+        setPanier(JSON.parse(storedPanier));
+      }
+    };
+
+    fetchPanier();
+  }, []);
+
+  useEffect(() => {
+    localStorage.setItem('panier', JSON.stringify(panier));
+  }, [panier]);
   const deleteProduit = async (produitId) => {
     try {
       const storedToken = localStorage.getItem('token');
       axios.defaults.headers.common['Authorization'] = `Bearer ${storedToken}`;
       await axios.delete(`http://localhost:3001/api/produits/${produitId}`);
-      setProduits(produits.filter((produit) => produit._id !== produitId));
+      const updatedProduits = produits.filter((produit) => produit._id !== produitId);
+      setProduits(updatedProduits);
       alert('Produit supprimé avec succès !');
     } catch (error) {
       console.error(error);
-      alert('Erreur lors de la suppression du produit.');
     }
   };
 
-  const handleEditInputChange = (event) => {
+  const handleFormInputChange = (event) => {
     const { name, value } = event.target;
-    setEditedProduit((prevProduit) => ({
+    setNewProduit((prevProduit) => ({
       ...prevProduit,
       [name]: value,
     }));
   };
 
-  const editProduit = async (produitId) => {
-    if (editingId === produitId) {
-      try {
-        const storedToken = localStorage.getItem('token');
-        axios.defaults.headers.common['Authorization'] = `Bearer ${storedToken}`;
-        await axios.put(`http://localhost:3001/api/produits/${produitId}`, editedProduit);
-        const updatedProduits = produits.map((produit) => {
-          if (produit._id === produitId) {
-            return { ...produit, ...editedProduit };
-          }
-          return produit;
-        });
-        setProduits(updatedProduits);
-        setEditingId(null);
-        alert('Produit modifié avec succès !');
-      } catch (error) {
-        console.error(error);
-        alert('Erreur lors de la modification du produit.');
-      }
-    } else {
-      setEditingId(produitId);
-      const produitToEdit = produits.find((produit) => produit._id === produitId);
-      setEditedProduit({ ...produitToEdit });
+  const addProduit = async () => {
+    try {
+      const storedToken = localStorage.getItem('token');
+      axios.defaults.headers.common['Authorization'] = `Bearer ${storedToken}`;
+      const response = await axios.post('http://localhost:3001/api/produits', newProduit);
+      const createdProduit = response.data;
+      setProduits([...produits, createdProduit]);
+      setShowForm(false);
+      setNewProduit({
+        nom: '',
+        description: '',
+        quantite: '',
+        prix: '',
+        categorie: '',
+      });
+      alert('Produit ajouté avec succès !');
+    } catch (error) {
+      console.error(error);
     }
   };
 
@@ -95,6 +105,67 @@ export default function GestionProduit() {
       <Navbar />
       <div className="container1">
         <h2>Liste des produits</h2>
+        <button className="btn btn-primary mb-4" onClick={() => setShowForm(true)}>
+          Ajouter un produit
+        </button>
+        {showForm && (
+          <div className="center-form">
+            <h3>Ajouter un produit</h3>
+            <div className="mb-3">
+              <label className="form-label">Nom</label>
+              <input
+                type="text"
+                name="nom"
+                value={newProduit.nom}
+                onChange={handleFormInputChange}
+                className="form-control"
+              />
+            </div>
+            <div className="mb-3">
+              <label className="form-label">Description</label>
+              <input
+                type="text"
+                name="description"
+                value={newProduit.description}
+                onChange={handleFormInputChange}
+                className="form-control"
+              />
+            </div>
+            <div className="mb-3">
+              <label className="form-label">Quantité</label>
+              <input
+                type="text"
+                name="quantite"
+                value={newProduit.quantite}
+                onChange={handleFormInputChange}
+                className="form-control"
+              />
+            </div>
+            <div className="mb-3">
+              <label className="form-label">Prix</label>
+              <input
+                type="text"
+                name="prix"
+                value={newProduit.prix}
+                onChange={handleFormInputChange}
+                className="form-control"
+              />
+            </div>
+            <div className="mb-3">
+              <label className="form-label">Catégorie</label>
+              <input
+                type="text"
+                name="categorie"
+                value={newProduit.categorie}
+                onChange={handleFormInputChange}
+                className="form-control"
+              />
+            </div>
+            <button className="btn btn-primary" onClick={addProduit}>
+              Enregistrer
+            </button>
+          </div>
+        )}
         <div className="row">
           {produits.map((produit) => (
             <div className="col-md-4" key={produit._id}>
@@ -102,84 +173,24 @@ export default function GestionProduit() {
                 <img src={`${produit.categorie}.png`} className="card-icon" alt={produit.categorie} />
                 <div className="card-body d-flex flex-column">
                   <h5 className="card-title">{produit.nom}</h5>
-                  {editingId === produit._id ? (
-                    <>
-                      <input
-                        type="text"
-                        name="nom"
-                        value={editedProduit.nom}
-                        onChange={handleEditInputChange}
-                      />
-                      <input
-                        type="text"
-                        name="description"
-                        value={editedProduit.description}
-                        onChange={handleEditInputChange}
-                      />
-                      <input
-                        type="text"
-                        name="quantite"
-                        value={editedProduit.quantite}
-                        onChange={handleEditInputChange}
-                      />
-                      <input
-                        type="text"
-                        name="prix"
-                        value={editedProduit.prix}
-                        onChange={handleEditInputChange}
-                      />
-                      <input
-                        type="text"
-                        name="categorie"
-                        value={editedProduit.categorie}
-                        onChange={handleEditInputChange}
-                      />
-                    </>
-                  ) : (
-                    <ul className="card-info">
-                      <li>
-                        <strong>Description:</strong> {produit.description}
-                      </li>
-                      <li>
-                        <strong>Quantité:</strong> {produit.quantite}
-                      </li>
-                      <li>
-                        <strong>Prix:</strong> {produit.prix}
-                      </li>
-                    </ul>
-                  )}
+                  <ul className="card-info">
+                    <li>
+                      <strong>Description:</strong> {produit.description}
+                    </li>
+                    <li>
+                      <strong>Quantité:</strong> {produit.quantite}
+                    </li>
+                    <li>
+                      <strong>Prix:</strong> {produit.prix}
+                    </li>
+                  </ul>
                   <div className="d-flex justify-content-center align-items-center mt-auto">
-                    {editingId === produit._id ? (
-                      <>
-                        <button
-                          className="btn btn-success"
-                          onClick={() => editProduit(produit._id)}
-                        >
-                          Appliquer
-                        </button>
-                        <button
-                          className="btn btn-secondary"
-                          onClick={() => setEditingId(null)}
-                        >
-                          Annuler
-                        </button>
-                      </>
-                    ) : (
-                      <>
-                        <button
-                          className="btn btn-primary"
-                          onClick={() => editProduit(produit._id)}
-                        >
-                          Modifier
-                        </button>
-                        <button
-                          className="btn btn-danger"
-                          onClick={() => deleteProduit(produit._id)}
-                        >
-                          Supprimer
-                        </button>
-                      </>
-                    )}
+                    <button className="btn btn-danger" onClick={() => deleteProduit(produit._id)}>
+                     Supprimer
+                    </button>
+                    <button className="btn btn-primary" onClick={() => console.log('Modifier')}>
+                      Modifier
+                    </button>
                   </div>
                 </div>
               </div>
