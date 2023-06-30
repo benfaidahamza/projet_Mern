@@ -5,7 +5,6 @@ import Navbar from '../../Header/Navbar';
 
 export default function GestionProduit() {
   const navigate = useNavigate();
-  const [user, setUser] = useState(null);
   const [produits, setProduits] = useState([]);
   const [editingId, setEditingId] = useState(null);
   const [editedProduit, setEditedProduit] = useState({
@@ -20,12 +19,13 @@ export default function GestionProduit() {
     const storedToken = localStorage.getItem('token');
     const storedRole = localStorage.getItem('role');
 
-    if (storedToken) {
-      setUser({ token: storedToken, role: storedRole });
-    } else {
-      navigate('/connexion');
-    }
+    if (storedToken && storedRole==='admin'){
+      navigate('/ListeProduits');
+    } 
+    else 
+    navigate('/connexion');
   }, [navigate]);
+
 
   useEffect(() => {
     const fetchProduits = async () => {
