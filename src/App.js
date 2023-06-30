@@ -4,7 +4,6 @@ import Connexion from './Composants/Connexion/Connexion'
 import Footer from './Composants/Footer/Footer'
 import Accueil from './Composants/Accueil/Accueil'
 import './App.css';
-import Produits from './Composants/Produits/Produits';
 import ListeProduits from './Composants/Adherent/ListeProduits/ListeProduits';
 import Panier from './Composants/Adherent/Panier/Panier';
 import GestionProduit from './Composants/Admin/GestionProduits/GestionProduit';
@@ -16,7 +15,6 @@ function App() {
     <Routes>
     <Route path={"/accueil"} element={ <Accueil/>} />
     <Route path={"/"} element={ <Accueil/>} />
-    <Route path="/Produits" element={<Produits/>} />
     <Route path="/Connexion" element={<Connexion/>} />
     <Route path="/ListeProduits" element={<ListeProduits/> } />
     <Route path="/Inscription" element={<Inscription/> } />

@@ -23,6 +23,7 @@ export default function GestionUser() {
       navigate('/Connexion');
     }
   }, [navigate]);
+
   useEffect(() => {
     const fetchUsers = async () => {
       try {
@@ -59,7 +60,7 @@ export default function GestionUser() {
       email: user.email,
       role: user.role,
       phone: user.phone,
-      password: '', // Réinitialiser le champ mot de passe lors de la modification
+      password: '',
     });
   };
 

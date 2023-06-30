@@ -59,18 +59,6 @@ export default function GestionProduits() {
 
     fetchProduits();
   }, []);
-
-  useEffect(() => {
-    const fetchPanier = () => {
-      const storedPanier = localStorage.getItem('panier');
-      if (storedPanier) {
-        setPanier(JSON.parse(storedPanier));
-      }
-    };
-
-    fetchPanier();
-  }, []);
-
   useEffect(() => {
     localStorage.setItem('panier', JSON.stringify(panier));
   }, [panier]);

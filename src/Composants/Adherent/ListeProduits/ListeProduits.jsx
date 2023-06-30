@@ -6,17 +6,12 @@ import Navbar from '../../Header/Navbar';
 
 export default function ListeProduits() {
   const navigate = useNavigate();
-  const [user, setUser] = useState(null);
   const [produits, setProduits] = useState([]);
   const [panier, setPanier] = useState([]);
 
   useEffect(() => {
     const storedToken = localStorage.getItem('token');
-    const storedRole = localStorage.getItem('role');
-
-    if (storedToken) {
-      setUser({ token: storedToken, role: storedRole });
-    } else {
+    if (!storedToken) {
       navigate('/connexion');
     }
   }, [navigate]);
@@ -94,8 +89,6 @@ export default function ListeProduits() {
         <h2>Liste des produits</h2>
         <div className="row">
           {filteredProduits.map((produit) => {
-            const item = panier.find((item) => item.produit.id === produit.id);
-            const quantitePanier = item ? item.quantitepanier : 0;
             return (
               <div className="col-md-4" key={produit.id}>
                 <div className="card">
