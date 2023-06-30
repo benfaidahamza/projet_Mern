@@ -5,7 +5,6 @@ import Navbar from '../../Header/Navbar';
 
 export default function GestionProduits() {
   const navigate = useNavigate();
-  const [user, setUser] = useState(null);
   const [produits, setProduits] = useState([]);
   const [panier, setPanier] = useState([]);
   const [showForm, setShowForm] = useState(false);
@@ -41,11 +40,8 @@ export default function GestionProduits() {
     const storedToken = localStorage.getItem('token');
     const storedRole = localStorage.getItem('role');
 
-    if (storedToken) {
-      setUser({ token: storedToken, role: storedRole });
-    } else {
+    if (!storedToken && storedRole!=='admib') 
       navigate('/connexion');
-    }
   }, [navigate]);
 
   useEffect(() => {

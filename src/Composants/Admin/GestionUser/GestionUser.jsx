@@ -12,7 +12,7 @@ export default function GestionUser() {
     email: '',
     role: '',
     phone: '',
-    password: '', // Nouveau champ mot de passe
+    password: '', 
   });
   const [showCreateForm, setShowCreateForm] = useState(false);
   
