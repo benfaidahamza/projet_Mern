@@ -16,11 +16,8 @@ export default function Inscription() {
     const storedToken = localStorage.getItem('token');
     const storedRole = localStorage.getItem('role');
 
-    if (storedToken && storedRole==='adherent') {
-      navigate('/ListeProduits');
-    }  else if (storedToken && storedRole==='admin') {
-      navigate('/Admin');
-    }
+    if (storedToken && (storedRole==='adherent' || storedRole==='admin')) {
+      navigate('/ListeProduits');}
     else 
     navigate('/Inscription');
   }, [navigate]);

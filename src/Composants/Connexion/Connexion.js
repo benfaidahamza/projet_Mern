@@ -14,11 +14,9 @@ export default function Connexion() {
     const storedToken = localStorage.getItem('token');
     const storedRole = localStorage.getItem('role');
 
-    if (storedToken && storedRole==='adherent') {
+    if (storedToken && (storedRole==='adherent' || storedRole==='admin')){
       navigate('/ListeProduits');
-    }  else if (storedToken && storedRole==='admin') {
-      navigate('/Admin');
-    }
+    } 
     else 
     navigate('/connexion');
   }, [navigate]);
@@ -34,10 +32,8 @@ export default function Connexion() {
       localStorage.setItem('token', response.data.token);
       localStorage.setItem('role', response.data.role);
 
-      if (response.data.role === 'adherent') {
+      if (response.data.role === 'adherent' || response.data.role === 'admin') {
         navigate('/ListeProduits');
-      } else if (response.data.role === 'admin') {
-        navigate('/Admin'); 
       } else {
         setError('Nom d\'utilisateur ou mot de passe incorrect');
       }
