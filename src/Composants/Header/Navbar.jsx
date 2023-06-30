@@ -43,6 +43,16 @@ function Navbar() {
                 </li>
               </>
             )}
+            {isLoggedIn && Storedrole==='admin' && (
+              <>
+                <li className="nav-item">
+                  <Link className="nav-link stylish" to="/GestionUser">Gestion User</Link>
+                </li>
+                <li className="nav-item">
+                  <Link className="nav-link stylish" to="/GestionProduit">Gestion Produit</Link>
+                </li>
+              </>
+            )}
        </ul>
       </div>     
     </div>

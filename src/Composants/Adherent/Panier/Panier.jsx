@@ -11,7 +11,7 @@ const Panier = () => {
   }, []);
 
   const removeFromCart = (produitId) => {
-    const updatedCartItems = panierItems.filter((produit) => produit.produit.id !== produitId);
+    const updatedCartItems = panierItems.filter((produit) => produit.produit._id !== produitId);
     setPanierItems(updatedCartItems);
     localStorage.setItem('panier', JSON.stringify(updatedCartItems));
     alert('Produit supprimé du panier !');
@@ -19,7 +19,7 @@ const Panier = () => {
 
   const decrementQuantite = (produitId) => {
     const updatedCartItems = panierItems.map((item) => {
-      if (item.produit.id === produitId) {
+      if (item.produit._id === produitId) {
         if (item.quantitepanier > 0) {
           item.quantitepanier -= 1;
         }
@@ -40,13 +40,14 @@ const Panier = () => {
   };
 
   const confirmCart = () => {
-      const updatedProduits = panierItems.map((item) => {
+    const updatedProduits = panierItems.map((item) => {
       const updatedQuantite = item.produit.quantite - item.quantitepanier;
       return { ...item.produit, quantite: updatedQuantite };
     });
-    console.log(updatedProduits)
+
     const storedToken = localStorage.getItem('token');
     axios.defaults.headers.common['Authorization'] = `Bearer ${storedToken}`;
+
     axios
       .put('http://localhost:3001/api/produits', updatedProduits)
       .then(() => {
@@ -87,10 +88,10 @@ const Panier = () => {
                       </li>
                     </ul>
                     <div className="d-flex justify-content-center">
-                      <button className="btn btn-danger" onClick={() => removeFromCart(item.produit.id)}>
+                      <button className="btn btn-danger" onClick={() => removeFromCart(item.produit._id)}>
                         Supprimer
                       </button>
-                      <button className="btn btn-secondary ml-2" onClick={() => decrementQuantite(item.produit.id)}>
+                      <button className="btn btn-secondary ml-2" onClick={() => decrementQuantite(item.produit._id)}>
                         Décrémenter
                       </button>
                     </div>
